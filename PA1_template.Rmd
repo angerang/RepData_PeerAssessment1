@@ -7,12 +7,35 @@ output:
 
 
 ## Loading and preprocessing the data
-
+> install.packages("knitr")
+> install.packages("dplyr")
+> install.packages("lubridate")
+> install.packages("ggplot2")
+> data <- read.csv("/Users/Anger/Downloads/activity.csv", header = TRUE, sep = ',', colClasses = c("numeric", "character","integer"))
+> library(knitr)
+> library(dplyr)
+> library(lubridate)
+> library(ggplot2)
+> data$date <- ymd(data$date)
+> str(data)
+> head(data)
+> steps <- data %>%
+> ggplot(steps, aes(x = steps)) +
++     geom_histogram(fill = "firebrick", binwidth = 1000) +
++     labs(title = "Histogram of Steps per day", x = "Steps per day", y = "Frequency")
 
 
 ## What is mean total number of steps taken per day?
+> ggplot(steps, aes(x = steps)) +
++     geom_histogram(fill = "firebrick", binwidth = 1000) +
++     labs(title = "Histogram of Steps per day", x = "Steps per day", y = "Frequency")
 
-
+> mean_steps <- mean(steps$steps, na.rm = TRUE)
+> median_steps <- median(steps$steps, na.rm = TRUE)
+> median_steps
+10765
+> mean_steps
+10766.19
 
 ## What is the average daily activity pattern?
 
