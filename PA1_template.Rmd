@@ -7,7 +7,7 @@ output:
 
 
 ## Loading and preprocessing the data
-data <- read.csv("/Users/Anger/Downloads/activity.csv", header = TRUE, sep = ',', colClasses = c("numeric", "character","integer"))
+data <- read.csv("activity.csv", header = TRUE, sep = ',', colClasses = c("numeric", "character","integer"))
 library(knitr)
 library(dplyr)
 library(lubridate)
