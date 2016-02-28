@@ -5,9 +5,15 @@ output:
     keep_md: true
 ---
 
+```{r}
+echo = TRUE  
+options(scipen = 1)  
+```
 
 ## Loading and preprocessing the data
-data <- read.csv("/Users/Anger/Downloads/activity.csv", header = TRUE, sep = ',', colClasses = c("numeric", "character","integer"))
+
+```{r}
+data <- read.csv("/Users/Anger/Downloads/activity.csv", header = TRUE, sep = ',', colClasses = c("numeric", "character","integer"))data$month <- as.numeric(format(data$date, "%m"))
 library(knitr)
 opts_chunk$set(echo = TRUE)
 library(dplyr)
@@ -16,10 +22,23 @@ library(ggplot2)
 data$date <- ymd(data$date)
 str(data)
 head(data)
+```
 
-  
 ## What is mean total number of steps taken per day?
+```{r}
+steps <- data %>%
+  filter(!is.na(steps)) %>%
+  group_by(date) %>%
+  summarize(steps = sum(steps)) %>%
+  print
 
+ggplot(steps, aes(x = steps)) +
+  geom_histogram(fill = "firebrick", binwidth = 1000) +
+  labs(title = "Histogram of Steps per day", x = "Steps per day", y = "Frequency")
+  
+mean_steps <- mean(steps$steps, na.rm = TRUE)
+median_steps <- median(steps$steps, na.rm = TRUE)
+```
 
 ## What is the average daily activity pattern?
 
