@@ -7,19 +7,16 @@ output:
 
 
 ## Loading and preprocessing the data
-data <- read.csv("activity.csv", header = TRUE, sep = ',', colClasses = c("numeric", "character","integer"))
+data <- read.csv("/Users/Anger/Downloads/activity.csv", header = TRUE, sep = ',', colClasses = c("numeric", "character","integer"))
 library(knitr)
+opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(lubridate)
 library(ggplot2)
 data$date <- ymd(data$date)
 str(data)
 head(data)
-steps <- data %>%
-  filter(!is.na(steps)) %>%
-  group_by(date) %>%
-  summarize(steps = sum(steps)) %>%
-  print
+
   
 ## What is mean total number of steps taken per day?
 
